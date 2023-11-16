@@ -1,0 +1,51 @@
+1. Write an assert statement that triggers an AssertionError if the variable spam is an integer less than 10.
+
+	-> assert spam >= 10
+
+2. Write an assert statement that triggers an AssertionError if the variables eggs and bacon contain strings that are the same as each other, even if their cases are different (that is, 'hello' and 'hello' are considered the same, and 'goodbye' and 'GOODbye' are also considered the same).
+
+	-> assert eggs.lower() != bacon.lower()
+
+3. Write an assert statement that always triggers an AssertionError.
+
+	-> assert False
+
+4. What are the two lines that your program must have in order to be able to call logging.debug()?
+
+	->  import logging
+		logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s -  %(levelname)s -  %(message)s')
+
+5. What are the two lines that your program must have in order to have logging.debug() send a logging message to a file named programLog.txt?
+
+	->  import logging
+		logging.basicConfig(filename='programlog.txt', level=logging.DEBUG, format=' %(asctime)s -  %(levelname)s -  %(message)s')
+
+6. What are the five logging levels?
+
+	-> DEBUG, INFO, WARNING, ERROR and CRITICAL
+
+7. What line of code can you add to disable all logging messages in your program?
+
+	-> logging.disable(logging.CRITICAL)
+
+8. Why is using logging messages better than using print() to display the same message?
+
+	-> We can disable all the logging message by typing in a single line, but if we use print() for all the messages we have to remove all of them by hand after their use. For messages that the user will want to see, we should use print() but its better to use looging messages for other things.
+
+9. What are the differences between the Step Over, Step In, and Step Out buttons in the debugger?
+
+	->Clicking the Step In button will cause the debugger to execute the next line of code and then pause again. If the next line of code is a function call, the debugger will jump to the first line of code of that function.
+	-> Clicking the Step Over button will execute the next line of code, similar to the Step In button. However, if the next line of code is a function call, the function’s code will be executed at full speed, and the debugger will pause as soon as the function call returns.
+	-> Clicking the Step Out button will cause the debugger to execute lines of code at full speed until it returns from the current function.
+
+10. After you click Continue, when will the debugger stop?
+
+	-> The program will execute until it terminates or reaches a breakpoint.
+
+11. What is a breakpoint?
+
+	-> A breakpoint can be set on a specific line of code and forces the debugger to pause whenever the program execution reaches that line.
+
+12. How do you set a breakpoint on a line of code in Mu?
+
+	-> To set a breakpoint, we should click the line number in the file editor to cause a red dot to appear, marking the breakpoint.

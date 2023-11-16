@@ -1,0 +1,129 @@
+1. What is the function that creates Regex objects?
+
+	-> re.compile()
+
+2. Why are raw strings often used when creating Regex objects?
+
+	-> Otherwise the shorthand character classes will be considered as escape sequences.
+
+3. What does the search() method return?
+
+	-> The search() method will return None if the regex pattern is not found in the string. If the pattern is found, the search() method returns a Match object.
+
+4. How do you get the actual strings that match the pattern from a Match object?
+
+	-> The Match object has a group() method that will return the actual matched text from the searched string.
+
+5. In the regex created from r'(\d\d\d)-(\d\d\d-\d\d\d\d)', what does group 0 cover? Group 1? Group 2?
+
+	-> group 0 covers the whole string '(\d\d\d)-(\d\d\d-\d\d\d\d)'
+	-> group 1 covers the string in the first set of parentheses '(\d\d\d)'
+	-> group 2 covers the string in the second set of parentheses '(\d\d\d-\d\d\d\d)'
+
+6. Parentheses and periods have specific meanings in regular expression syntax. How would you specify that you want a regex to match actual parentheses and period characters?
+
+	->By using '\(', '\)' for parentheses and '.\' for period character.
+
+7. The findall() method returns a list of strings or a list of tuples of strings. What makes it return one or the other?
+
+	-> findall() will return a a list of strings, as long as there are no groups in the regular expression. If there are groups in the regular expression, then findall() will return a list of tuples.
+
+8. What does the | character signify in regular expressions?
+
+	-> You can use it anywhere you want to match one of many expressions.
+
+9. What two things does the ? character signify in regular expressions?
+
+	-> The ? character flags the group that precedes it as an optional part of the pattern. The regex will match text that has zero instances or one instance of that group in it.
+
+10. What is the difference between the + and * characters in regular expressions?
+
+	-> The * character means match zero or more of the group that precedes the star can occur any number of times in the text. It can be completely absent or repeated over and over again. The + character means match one or more. Unlike the star, which does not require its group to appear in the matched string, the group preceding a plus must appear at least once.
+
+11. What is the difference between {3} and {3,5} in regular expressions?
+
+	-> If you give {3} after a group, it will match a string that is 3 times repetion of the string inside the group. If you give {3, 5} after a group, it will match a string that is 3, 4 or 5 times repetion of the string inside the group.
+
+12. What do the \d, \w, and \s shorthand character classes signify in regular expressions?
+
+	-> \d represents any numeric digit from 0 to 9.
+	-> \w represents any letter, numeric digit, or the underscore character.
+	-> \s represents any space, tab, or newline character. 
+
+13. What do the \D, \W, and \S shorthand character classes signify in regular expressions?
+
+	-> \D represents any character that is not a numeric digit from 0 to 9.
+	-> \W represents any character that is not a letter, numeric digit, or the underscore character.
+	-> \S represents any character that is not a space, tab, or newline.
+
+14. What is the difference between .* and .*??
+
+	-> (.*) can be used to match anything. The dot character means “any single character except the newline,” and the star character means “zero or more of the preceding character.”. The dot-star uses greedy mode. To match any and all text in a non-greedy fashion, we use (.*?).
+
+15. What is the character class syntax to match all numbers and lowercase letters?
+
+	-> [a-z0-9]
+
+16. How do you make a regular expression case-insensitive?
+
+	-> To make your regex case-insensitive, you can pass re.IGNORECASE or re.I as a second argument to re.compile().
+
+17. What does the . character normally match? What does it match if re.DOTALL is passed as the second argument to re.compile()?
+
+	-> The dot character matches any single character except the newline.  if re.DOTALL is passed as the second argument to re.compile() it includes the newline.
+
+18. If numRegex = re.compile(r'\d+'), what will numRegex.sub('X', '12 drummers, 11 pipers, five rings, 3 hens') return?
+
+	-> 'X drummers, X pipers, five rings, X rings'
+
+19. What does passing re.VERBOSE as the second argument to re.compile() allow you to do?
+
+	-> It allows us to write comments in our regular expression.
+
+
+20. How would you write a regex that matches a number with commas for every three digits? It must match the following:
+
+    '42'
+    '1,234'
+    '6,368,745'
+
+but not the following:
+
+    '12,34,567' (which has only two digits between the commas)
+    '1234' (which lacks commas)
+
+    -> re.compile(r'^\d{1,3}(,\d{3})*$')
+
+21. How would you write a regex that matches the full name of someone whose last name is Watanabe? You can assume that the first name that comes before it will always be one word that begins with a capital letter. The regex must match the following:
+
+    'Haruto Watanabe'
+    'Alice Watanabe'
+    'RoboCop Watanabe'
+
+but not the following:
+
+    'haruto Watanabe' (where the first name is not capitalized)
+    'Mr. Watanabe' (where the preceding word has a nonletter character)
+    'Watanabe' (which has no first name)
+    'Haruto watanabe' (where Watanabe is not capitalized)
+
+    -> re.compile(r'[A-Z][a-z]*\sWatanabe')
+
+22. How would you write a regex that matches a sentence where the first word is either Alice, Bob, or Carol; the second word is either eats, pets, or throws; the third word is apples, cats, or baseballs; and the sentence ends with a period? This regex should be case-insensitive. It must match the following:
+
+    'Alice eats apples.'
+    'Bob pets cats.'
+    'Carol throws baseballs.'
+    'Alice throws Apples.'
+    'BOB EATS CATS.'
+
+but not the following:
+
+    'RoboCop eats apples.'
+    'ALICE THROWS FOOTBALLS.'
+    'Carol eats 7 cats.'
+
+    -> re.compile(r'(Alice|Bob|Carol)\s(eats|pets|throws)\s(apples|cats|baseballs)\.', re.IGNORECASE)
+
+
+
